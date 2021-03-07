@@ -34,7 +34,7 @@ DATA_PRESET:
 MODEL:
   TYPE: 'FastPose'
   PRETRAINED: ''
-  TRY_LOAD: '/home/group3/AlphaPose/exp/pami_hico_and_coco-256x192_res50_lr1e-3_1x.yaml/model_6.pth'
+  TRY_LOAD: ''
   NUM_DECONV_FILTERS:
   - 256
   - 256
