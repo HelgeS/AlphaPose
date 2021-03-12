@@ -44,7 +44,7 @@ class YOLODetector(BaseDetector):
     def load_model(self):
         args = self.detector_opt
 
-        print('Loading YOLO model..')
+        print('Loading YOLOv3 model..')
         self.model = Darknet(self.model_cfg)
         self.model.load_weights(self.model_weights)
         self.model.net_info['height'] = self.inp_dim
@@ -84,8 +84,7 @@ class YOLODetector(BaseDetector):
         """
         args = self.detector_opt
         _CUDA = True
-        if args:
-            if args.gpus[0] < 0:
+        if args and len(args.gpus) == 0:
                 _CUDA = False
         if not self.model:
             self.load_model()
@@ -246,8 +245,7 @@ class YOLODetector(BaseDetector):
         """
         args = self.detector_opt
         _CUDA = True
-        if args:
-            if args.gpus[0] < 0:
+        if args and len(args.gpus) == 0:
                 _CUDA = False
         if not self.model:
             self.load_model()

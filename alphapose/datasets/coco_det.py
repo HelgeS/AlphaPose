@@ -32,6 +32,7 @@ class Mscoco_det(data.Dataset):
         self._cfg = cfg
         self._opt = opt
         self._preset_cfg = cfg['PRESET']
+        self._detector_cfg = cfg['DETECTOR']
         self._root = cfg['ROOT']
         self._img_prefix = cfg['IMG_PREFIX']
         if not det_file:
@@ -88,7 +89,7 @@ class Mscoco_det(data.Dataset):
 
         _coco = COCO(self._ann_file)
         image_ids = sorted(_coco.getImgIds())
-        det_model = get_detector(self._opt)
+        det_model = get_detector(self._opt, cfg=self._detector_cfg)
         dets = []
         for entry in tqdm(_coco.loadImgs(image_ids)):
             abs_path = os.path.join(
